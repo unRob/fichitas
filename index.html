@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+	<head>
+		<meta charset="utf-8" />
+		<title>Fichitas</title>
+		
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		
+		
+		<link rel="apple-touch-icon" href="/assets/img/icons/icon.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/assets/img/icons/icon@2x.png" />
+
+		<link rel="apple-touch-startup-image" href="/assets/img/startup/320x460.png" media="screen and (max-device-width : 320px)">
+		<link rel="apple-touch-startup-image" href="/assets/img/startup/640x920.png" media="(max-device-width : 480px) and (-webkit-min-device-pixel-ratio : 2)">
+		<link rel="apple-touch-startup-image" href="/assets/img/startup/640x1096.png" media="(max-device-width : 548px) and (-webkit-min-device-pixel-ratio : 2)">
+		<link rel="apple-touch-startup-image" sizes="1024x748" href="/assets/img/startup/1024x748.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)">
+		<link rel="apple-touch-startup-image" sizes="768x1004" href="/assets/img/startup/768x1004.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)">
+		<link rel="apple-touch-startup-image" sizes="2048x1496" href="/assets/img/startup/2048x1496.png" media="screen and (-webkit-min-device-pixel-ratio : 2) and (min-device-width : 481px) and (max-device-width : 2048px) and (orientation : landscape)">
+		<link rel="apple-touch-startup-image" sizes="1536x2008" href="/assets/img/startup/1536x2008.png" media="screen and (-webkit-min-device-pixel-ratio : 2) and (min-device-width : 481px) and (max-device-width : 2048px) and (orientation : portrait)">
+		
+		<link href="/assets/css/main.css" rel="stylesheet" />
+	</head>
+	<body>
+
+		<section id="game" class="screen shown">
+			<div class="nav">
+				<h1 id="game-name">Primer Juego</h1>
+				<a class="nav-icon icono round-icon" id="config-button" href="#config">settings</a>
+			</div>
+			
+			<section id="players">
+				<script type="text/html" id="player-tpl">
+				<div id="player-{{id}}" class="player">
+					<h1 class="player-name">{{name}}</h1>
+					<div class="score-box">
+						<div class="score">{{#renderScore}}{{a}}{{/renderScore}}</div>
+						<div class="loss">
+							<a class="for-more-players player-save plus icono round-icon" data-modifies="#player-{{id}}-score">check</a>
+							<input type="number" id="player-{{id}}-score" class="score-input" placeholder="0" min="0" max="99" pattern="\d*" />
+							<div class="score-action-buttons">
+								<span class="cell">
+									<a class="player-add plus icono round-icon" data-modifies="#player-{{id}}-score">plus</a>
+								</span>
+								<span class="cell">
+									<a class="for-2-players player-save plus icono round-icon" data-modifies="#player-{{id}}-score">check</a>
+								</span>
+							</div>
+							<ul class="suma">
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+				</script>
+			</section>
+
+		</section>
+
+		<section id="config" class="screen 2-boxes ashown">
+			<a class="nav-icon icono round-icon" id="back" href="#game" data-action="saveConfig">back</a>
+
+			<div class="box">
+				<h1>Jugadores</h1>
+				<div class="config-element">
+					<span class="cell">
+						<a role="action-button" class="minus icono round-icon" data-modifies="#jugadores" data-action="minus">minus</a>
+					</span>
+					<input class="cell" type="number" id="jugadores" value="2" min="2" max="4" step="1" pattern="\d*" />
+					<span class="cell">
+						<a role="action-button" class="plus icono round-icon" data-modifies="#jugadores" data-action="plus">plus</a>
+					</span>
+				</div>
+			</div>
+
+			<div class="box">
+				<h1>Puntos</h1>
+				<div class="config-element">
+					<span class="cell">
+						<a role="action-button" class="minus round-icon icono" data-modifies="#puntos" data-action="minus">minus</a>
+					</span>
+					<input class="cell" type="number" id="puntos" value="100" min="2" max="950" step="50" pattern="\d*" />
+					<span class="cell">
+						<a role="action-button" class="plus round-icon icono" data-modifies="#puntos" data-action="plus">plus</a>
+					</span>
+				</div>
+			</div>
+
+			<a role="navigation-button" class="button" id="restart-game" href="#juego">Empezar de nuevo</a>
+
+		</section>
+		
+		<script src="/assets/js/main.js"></script>
+	</body>
+</html>

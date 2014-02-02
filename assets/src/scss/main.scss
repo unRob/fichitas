@@ -1,0 +1,216 @@
+@import "_reset";
+@import "_variables";
+@import "_symbols";
+@import "_buttons";
+@import "config";
+
+@mixin clearfix() {
+	*zoom: 1;
+	&:before,
+	&:after {
+		content: ' ';
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+body {
+	background-color: #000;
+	font: 16px/1em "Avenir Next", "Avenir", sans-serif;
+	text-transform: uppercase;
+	text-align: center;
+	color: #ededed;
+
+}
+
+.screen {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+	top: 0px;
+	-webkit-transition: all .5s ease-in;
+	-webkit-backface-visibility: hidden;
+	
+	-webkit-transform: perspective( 500px ) rotateY(180deg);
+	-webkit-transition: all .5s ease-in;
+	background-color: $grisObscuro;
+	&.shown {
+		-webkit-transform: rotateY(0deg);
+		-webkit-transition: all .5s ease-in;
+	}
+}
+
+a {
+	color: #fff;
+}
+
+h1 {
+	color: #E6E6E6;
+	font-size: 18px;
+}
+
+#game-name {
+	color: darken($grisMedio, 20%);
+	padding-top: 5px;
+	position: absolute;
+	width: 100%;
+	font-weight:300;
+}
+
+#players {
+	padding-top: 15px;
+}
+
+.player {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	width: 100%;
+	margin-bottom: 20px;
+	@include clearfix;
+
+	&:active, &.active {
+		box-shadow: inset 0px 0px 6px #000;
+	}
+
+	h1 {
+		position: fixed;
+		width: 100%;
+		margin-top: -15px;
+	}
+}
+
+
+.player-name {
+	z-index: 100;
+	color: $grisMedio;
+}
+
+.score-box {
+	display: -webkit-box;
+	width: 200%;
+	-webkit-box-orient: horizontal;
+	-webkit-user-select: none;
+	        user-select: none;
+}
+
+.score, .score-input {
+	font: inherit;
+	font-size:$bigNumber;
+	line-height: 1em;
+	font-weight: 800;
+	font-family: "Avenir Next Condensed", "Avenir Next", "Avenir";
+	height: 100%;
+	padding-top: 16px;
+	font-style: normal;
+	//background-color: $grisObscuro;
+}
+.score-input {
+	padding: 0;
+	background-color: transparent;
+	border:none;
+	text-align:center;
+	width: 80%;
+}
+
+
+::-webkit-input-placeholder {
+	line-height: 1.2em;
+}
+.score, .loss {
+	width: 50%;
+	position: relative;
+}
+
+.score-action-buttons {
+	position: absolute;
+	right: 1em;
+	top: 1em;
+	width: 25%;
+	text-align: center;
+
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	vertical-align: middle;
+	-webkit-align-items: center;
+	-webkit-justify-content: center;
+
+	& .cell {
+		-webkit-flex: 1 1 auto;
+		vertical-align: middle;
+	}
+
+	.icono {
+		float: right;
+	}
+}
+
+.suma {
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	color: $grisMedio;
+	width:100%;
+	font-weight: 600;
+	font-size: 30px;
+	line-height: 36px;
+
+	& li {display: inline-block;}
+	& li:after {
+		content: '+';
+	}
+
+	& li:last-child:after {
+		content: none;
+	}
+}
+
+.for-more-players {
+	display:none;
+	position:relative;
+	position: relative;
+	top: .35em;
+	left: .15em
+}
+
+.player-count-3 {
+
+	& .for-more-players {
+		display: block;
+		float: left;
+	}
+
+	& .for-2-players {
+		display: none;
+
+	}
+
+	& .score {
+		font-size: 80px;
+	}
+
+	& .player-name {
+		font-size: 14px;
+		font-weight: normal;
+	}
+
+	& .score-action-buttons {
+		top: 1em;
+		right: .2em
+	}
+
+	& .score-input {
+		font-size: 80px;
+		width: 55%;
+		float: left;
+	}
+
+	& .suma {
+		font-size: 18px;
+	}
+}

@@ -1,0 +1,74 @@
+@import "_variables";
+
+#config {
+	background-color: darken($grisMedio, 20%);
+	color: $grisClaro;
+	
+	& h1 {
+		color: darken($grisMedio, 40%);
+	}
+
+	& input {
+		width: 50%;
+		background-color: transparent;
+		border: none;
+		font:inherit;
+		font-size: 90px;
+		padding: 0 5px;
+		font-weight: bold;
+		text-align: center;
+		color: $grisClaro;
+		-webkit-appearance: none;
+		font-weight: 800;
+		font-family: "Avenir Next Condensed", "Avenir Next", "Avenir";
+	}
+
+	& [role=action-button] {
+		display: inline-block;
+		background-color: $grisObscuro;
+		color: $grisClaro;
+	}
+
+	& [role=action-button]:hover {
+		color: $grisObscuro;
+		background-color: $grisClaro;
+	}
+
+}
+
+.config-element {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	vertical-align: middle;
+	-webkit-align-items: center;
+	justify-content: center;
+
+	& .cell {
+		text-align: center;
+		-webkit-flex: 1 1 auto;
+		vertical-align: middle;
+	}
+}
+
+#restart-game {
+	width: 100%;
+	background: lighten($grisObscuro, 10%);
+	text-decoration: none;
+	color: $grisClaro;
+	display: block;
+	padding: 0px;
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 1.5em;
+	position: absolute;
+	bottom: 1em;
+	font-weight: 600;
+	padding-top: .1em;
+
+	&:hover, {
+		background: $grisObscuro
+	}
+	&:active {
+		background: rgb(180,0,0)
+	}
+}

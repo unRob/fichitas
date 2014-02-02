@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html manifest="manifest.appcache">
+	<head>
+		<meta charset="utf-8" />
+		<title>Fichitas</title>
+		
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		
+		
+		<link rel="apple-touch-icon" href="/assets/icons/icon.png" />
+		<link rel="apple-touch-icon" sizes="114x114" href="/assets/icons/icon@2x.png" />
+		
+		<link href="/assets/css/reset.css" rel="stylesheet" />
+		<link href="/assets/css/main.css" rel="stylesheet" />
+	</head>
+	<body>
+		
+		<div id="no-webapp">
+			<h1>Poop</h1>
+		</div>
+		
+		<div id="container">
+			
+			<div id="nuevo-juego" class="card hidden">
+				<div class="card-upper card-part">
+					<h1>Nuevo Juego</h1>
+					<ul id="jugadores">
+						<li data-jugadores="2" data-equipos="2">2 vs 2</li>
+						<li data-jugadores="4">4 jugadores</li>
+						<li data-jugadores="4">3 jugadores</li>
+						<li data-jugadores="4">2 jugadores</li>
+					</ul>
+				</div>
+				<div class="separador card-part"></div>
+				<div class="card-bottom card-part">
+					<div class="patote"></div>
+					<a href="#regresar" class="action-small">regresar</a>
+				</div>
+			</div>
+			
+			
+			<div id="setup-juego" class="card hidden">
+				<div class="card-upper card-part">
+					<div class="flex top">
+						<h1 id="tipo-juego">2 vs 2</h1>
+						<h2>A <input type="number" min="0" range="1" value="100" id="max-puntos"/><span id="max-puntos-target">100</span> puntos</h2>
+					</div>
+					<div class="flex bottom">
+						<h1>Nosotros</h1>
+					</div>
+				</div>
+				<div class="separador separador-large card-part"><p>VS</p></div>
+				<div class="card-bottom card-part">
+					<div class="flex top">
+						<h1>Ellos</h1>
+					</div>
+					
+					<div class="flex bottom">
+						<a href="#regresar" class="action-small">comenzar</a>
+						<a href="#comenzar" class="action-small">regresar</a>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="juego" class="card">
+				<div class="card-upper card-part">
+					<div class="flex top">
+						<h2 id="numero-juego" class="first-h2">Primer juego</h2>
+					</div>
+					
+					<div class="flex bottom">
+						<p id="player-1" class="score">00</p>
+						<h1>Nosotros</h1>
+						<ul id="scores-player-1" class="scores-list">
+						</ul>
+					</div>
+				</div>
+				<div class="separador separador-large card-part">
+					<p id="activa-resultados">VS</p>
+				</div>
+				<div class="card-bottom card-part">
+					<div class="flex top">
+						<ul id="scores-player-2" class="scores-list">
+						</ul>
+						<h1>Ellos</h1>
+						<p class="score" id="player-2">00</p>
+					</div>
+					
+					<div class="flex bottom">
+						<a id="terminar" href="#terminar" class="action-small">empezar de nuevo</a>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div id="resultado" class="card flip">
+				<div class="card-part card-upper">
+					<div class="flex top">
+						<h2 class="first-h2">Resultados</h2>
+					</div>
+					<div class="flex bottom">
+						<input type="tel" class="score"  min="0" placeholder="0" id="score-player-1" />
+						<h1>Nosotros</h1>
+					</div>
+				</div>
+				<div class="separador separador-large card-part"><p>VS</p></div>
+				<div class="card-part card-bottom">
+					<div class="flex top">
+						<h1>Ellos</h1>
+						<input type="tel" class="score" min="0" placeholder="0" id="score-player-2" />
+					</div>
+					<div class="flex bottom">
+						<button id="guardar">Guardar</button>
+						<a id="cancelar" class="action-small">cancelar</a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<script src="/assets/js/jquery.js"></script>
+		<script src="/assets/js/main.js"></script>
+	</body>
+</html>

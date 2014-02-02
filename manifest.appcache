@@ -1,0 +1,10 @@
+CACHE MANIFEST
+#v0.0.8
+
+CACHE:
+/assets/css/main.css
+/assets/js/main.js
+/assets/fonts/ss-pika.woff
+/assets/fonts/ss-pika.svg
+/assets/fonts/ss-pika.ttf
+/assets/fonts/ss-pika.eot
