@@ -899,13 +899,17 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
       if (check == null) {
         check = true;
       }
+      console.log("saving config");
       if (check && (parseInt(cfg.jugadores.val(), 10) !== game.playerCount) && game.started) {
+        console.log("checking");
         if (!confirm('Hay un juego en curso, deseas comenzar uno nuevo?')) {
           cfg.jugadores.val(config.get('players.qty'));
           return false;
         }
+        console.log("changing player qty");
+        config.set('players.qty', parseInt(cfg.jugadores.val(), 10));
       }
-      config.set('players.qty', parseInt(cfg.jugadores.val(), 10));
+      console.log("config saved");
       return config.set('game.maxPoints', parseInt(cfg.puntos.val(), 10));
     };
     window.addScore = function(player, points) {
@@ -917,7 +921,8 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
     cfg.jugadores.val(config.get('players.qty') || 2);
     cfg.puntos.val(config.get('game.maxPoints') || 100);
     config.on('players.qty', function(ahora, antes) {
-      return game = game.restart();
+      game = game.restart();
+      return $('#game-name').text(game.name());
     });
     $('[role=action-button]').on('click', function(evt) {
       var action, el, max, min, newVal, target, val;
@@ -957,6 +962,27 @@ return(!i||i!==r&&!b.contains(r,i))&&(e.type=o.origType,n=o.handler.apply(this,a
         screens.config.removeClass('shown');
         return screens.game.addClass('shown');
       }
+    });
+    $('#finish-game').on('click', function(evt) {
+      var count, id, max, player, _ref, _ref1;
+      evt.preventDefault();
+      max = 0;
+      _ref = game.players;
+      for (id in _ref) {
+        player = _ref[id];
+        count = player.scores.length;
+        if (max < count) {
+          max = count;
+        }
+      }
+      _ref1 = game.players;
+      for (id in _ref1) {
+        player = _ref1[id];
+        if (player.scores.length < max) {
+          player.addPoints(0);
+        }
+      }
+      return game = game.next();
     });
     return $('.nav-icon').on('click', function(evt) {
       var cb, invisible, visible;

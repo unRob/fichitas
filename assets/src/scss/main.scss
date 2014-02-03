@@ -180,8 +180,11 @@ h1 {
 
 .player-count-3 {
 
-	& .for-more-players {
+	& .for-more-players, &+.for-more-players {
 		display: block;
+	}
+
+	& .for-more-players.icono {
 		float: left;
 	}
 

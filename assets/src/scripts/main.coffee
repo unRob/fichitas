@@ -20,12 +20,16 @@ $ ()->
 		$('#game-name').text(game.name())
 
 	window.saveConfig = (check=true)->
+		console.log "saving config"
 		if (check && (parseInt(cfg.jugadores.val(),10) != game.playerCount) && game.started)
+			console.log "checking"
 			if (!confirm('Hay un juego en curso, deseas comenzar uno nuevo?'))
 				cfg.jugadores.val(config.get('players.qty'));
 				return false;
+			console.log "changing player qty"
+			config.set 'players.qty', parseInt(cfg.jugadores.val(), 10)	
 
-		config.set 'players.qty', parseInt(cfg.jugadores.val(), 10)
+		console.log "config saved"	
 		config.set 'game.maxPoints', parseInt(cfg.puntos.val(), 10)
 
 	window.addScore = (player, points)->
@@ -37,6 +41,7 @@ $ ()->
 	cfg.puntos.val(config.get('game.maxPoints')||100);
 	config.on 'players.qty', (ahora, antes)->
 		game = game.restart()
+		$('#game-name').text(game.name())
 
 
 
@@ -71,6 +76,19 @@ $ ()->
 			$('#game-name').text(game.name())
 			screens.config.removeClass('shown')
 			screens.game.addClass('shown')
+
+	$('#finish-game').on 'click', (evt)->
+		evt.preventDefault();
+		max = 0
+		for id, player of game.players
+			count = player.scores.length
+			max = count if max < count
+
+		for id, player of game.players
+			if player.scores.length < max
+				player.addPoints(0)
+
+		game = game.next()
 
 
 	$('.nav-icon').on 'click', (evt)->
